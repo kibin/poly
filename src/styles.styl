@@ -1,0 +1,34 @@
+square-side = 100px
+square-diagonal = ceil(square-side * math(2, 'sqrt'))
+square-margin = (square-diagonal - square-side) / 2
+triangle-height = math(3, 'sqrt') / 2 * square-diagonal
+triangle-wide = ceil(square-side * 3 / math(3, 'sqrt'))
+triangle-wide-height = ceil(math(3, 'sqrt') / 2 * triangle-wide)
+circle-diameter = square-side * 2
+
+body
+  height: 6000px
+  margin: 0
+
+.polymorph
+  display: block
+  position: fixed
+  border: 1px solid transparent
+  overflow: hidden
+  border-radius: 50%
+  margin: 0
+
+  .top, .bottom
+    transform-origin: 50%
+    content: ''
+    display: block
+    width: 0
+    height: 0
+    border-left: solid transparent //(square-diagonal * .5)
+    border-right: solid transparent //(square-diagonal * .5)
+
+  .top
+    border-bottom-style: solid
+
+  .bottom
+    border-top-style: solid
