@@ -1,0 +1,30 @@
+body {
+  height: 6000px;
+  margin: 0;
+}
+.polymorph {
+  display: block;
+  position: fixed;
+  border: 1px solid transparent;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 0;
+}
+.polymorph .top,
+.polymorph .bottom {
+  -webkit-transform-origin: 50%;
+      -ms-transform-origin: 50%;
+          transform-origin: 50%;
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: solid transparent;
+  border-right: solid transparent;
+}
+.polymorph .top {
+  border-bottom-style: solid;
+}
+.polymorph .bottom {
+  border-top-style: solid;
+}
