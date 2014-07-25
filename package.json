@@ -8,6 +8,10 @@
   },
   "author": "kibin",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kibin/poly.git"
+  },
   "devDependencies": {
     "gulp": "^3.8.6",
     "gulp-autoprefixer": "0.0.8",
