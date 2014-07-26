@@ -3,7 +3,8 @@ $top = $morph.find \.top
 $bottom = $morph.find \.bottom
 set-parts-color = set-color $top, $bottom
 parts-bgc = set-random-color!
-last-top = window.scroll-y
+$win = $ window
+last-top = $win.scroll-top!
 scroll-height = document.document-element.scroll-height - window.inner-height
 square-side = Math.ceil window.inner-width / 10
 
@@ -14,8 +15,9 @@ center-morph!
 ##
 # Events
 $ window
-  .on 'scroll touchmove', ->
-    set-parts-color ++parts-bgc if 0 < window.scroll-y < scroll-height
+  .on 'scroll touchmove', (e) ->
+    e.preventDefault!
+    set-parts-color ++parts-bgc if 0 < $win.scroll-top! < scroll-height
     set-morph-position!
     set-morph-form!
   .on \resize, ->
@@ -48,7 +50,7 @@ function set-color $top, $bottom
 function set-morph-position
   height = window.inner-height - $morph.outer-height true
 
-  $morph.css \top, window.scroll-y / scroll-height * height
+  $morph.css \top, $win.scroll-top! / scroll-height * height
 
 function center-morph
   $morph.css \left, (window.inner-width - $morph.outer-width true) / 2
@@ -69,7 +71,7 @@ function get-morph-styles settings
 
     for style, value of object.start
       delta = object.end[style] - value
-      percent = window.scroll-y / scroll-height
+      percent = $win.scroll-top! / scroll-height
       percent -= 0.5 if percent > 0.5
 
       styles[name][style] = percent * delta * 2 + value
@@ -98,7 +100,7 @@ function get-sizes
 
 # Страхота длиннокота. Просто получаем значения в начале, середине, конце.
 function get-morph-settings szs
-  if window.scrollY < scroll-height / 2
+  if $win.scroll-top! < scroll-height / 2
     top =
       start:
         margin-top: (szs.diameter - szs.diagonal) / 2
