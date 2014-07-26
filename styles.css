@@ -1,6 +1,24 @@
+* {
+  box-sizing: border-box;
+}
 body {
-  height: 6000px;
+  padding: 0;
   margin: 0;
+  overflow: hidden;
+}
+.wrap {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+.scroll {
+  width: 100%;
+  z-index: 1;
+  height: 4000px;
 }
 .polymorph {
   display: block;
