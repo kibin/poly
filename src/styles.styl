@@ -1,15 +1,27 @@
-square-side = 100px
-square-diagonal = ceil(square-side * math(2, 'sqrt'))
-square-margin = (square-diagonal - square-side) / 2
-triangle-height = math(3, 'sqrt') / 2 * square-diagonal
-triangle-wide = ceil(square-side * 3 / math(3, 'sqrt'))
-triangle-wide-height = ceil(math(3, 'sqrt') / 2 * triangle-wide)
-circle-diameter = square-side * 2
+*
+  box-sizing: border-box
 
 body
-  height: 6000px
+  padding: 0
   margin: 0
+  overflow: hidden
 
+// iscroll
+.wrap
+  margin: 0
+  position: absolute
+  top: 0
+  bottom: 0
+  width: 100%
+  overflow: hidden
+  z-index: 1
+
+.scroll
+  width: 100%
+  z-index: 1
+  height: 4000px
+
+// figures
 .polymorph
   display: block
   position: fixed

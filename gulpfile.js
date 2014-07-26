@@ -36,8 +36,10 @@ gulp.task('clean', function() {
 });
 
 gulp.task('copy', function() {
-  return gulp.src(['node_modules/jquery/dist/jquery.js'])
-    .pipe(gulp.dest('public/'));
+  return gulp.src([
+    'node_modules/jquery/dist/jquery.js',
+    'node_modules/iscroll/build/iscroll-probe.js'
+  ]).pipe(gulp.dest('public/'));
 });
 
 gulp.task('watch', ['clean', 'copy'], function() {
