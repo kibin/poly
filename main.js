@@ -1,19 +1,21 @@
 (function(){
-  var $morph, $top, $bottom, setPartsColor, partsBgc, lastTop, scrollHeight, squareSide;
+  var $morph, $top, $bottom, setPartsColor, partsBgc, $win, lastTop, scrollHeight, squareSide;
   $morph = $('.polymorph');
   $top = $morph.find('.top');
   $bottom = $morph.find('.bottom');
   setPartsColor = setColor($top, $bottom);
   partsBgc = setRandomColor();
-  lastTop = window.scrollY;
+  $win = $(window);
+  lastTop = $win.scrollTop();
   scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
   squareSide = Math.ceil(window.innerWidth / 10);
   setMorphPosition();
   setMorphForm();
   centerMorph();
-  $(window).on('scroll touchmove', function(){
+  $(window).on('scroll touchmove', function(e){
     var ref$;
-    if (0 < (ref$ = window.scrollY) && ref$ < scrollHeight) {
+    e.preventDefault();
+    if (0 < (ref$ = $win.scrollTop()) && ref$ < scrollHeight) {
       setPartsColor(++partsBgc);
     }
     setMorphPosition();
@@ -42,7 +44,7 @@
   function setMorphPosition(){
     var height;
     height = window.innerHeight - $morph.outerHeight(true);
-    return $morph.css('top', window.scrollY / scrollHeight * height);
+    return $morph.css('top', $win.scrollTop() / scrollHeight * height);
   }
   function centerMorph(){
     return $morph.css('left', (window.innerWidth - $morph.outerWidth(true)) / 2);
@@ -65,7 +67,7 @@
       for (style in ref$ = object.start) {
         value = ref$[style];
         delta = object.end[style] - value;
-        percent = window.scrollY / scrollHeight;
+        percent = $win.scrollTop() / scrollHeight;
         if (percent > 0.5) {
           percent -= 0.5;
         }
@@ -94,7 +96,7 @@
   }
   function getMorphSettings(szs){
     var top, bottom, morph;
-    if (window.scrollY < scrollHeight / 2) {
+    if ($win.scrollTop() < scrollHeight / 2) {
       top = {
         start: {
           marginTop: (szs.diameter - szs.diagonal) / 2,
